@@ -8,6 +8,9 @@ module.exports = {
       fontFamily: {
         sans: ['Montserrat', 'sans-serif'],
       },
+      backgroundImage: {
+        'home-gradient': 'linear-gradient(to bottom, #A8C6D2, #ffffff)',
+      },
     },
   },
   plugins: [],
