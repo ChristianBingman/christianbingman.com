@@ -1354,6 +1354,42 @@ let
         sha512 = "d9zaMRSTIKDLhctzH12MtXvJKSSUhaHcjV+2Z+GK+EEY7XKpP5yR4x+N3TAcHTcu963nIr+TMcCb4DBCYX1z6Q==";
       };
     };
+    "@fortawesome/fontawesome-common-types-6.6.0" = {
+      name = "_at_fortawesome_slash_fontawesome-common-types";
+      packageName = "@fortawesome/fontawesome-common-types";
+      version = "6.6.0";
+      src = fetchurl {
+        url = "https://registry.npmjs.org/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-6.6.0.tgz";
+        sha512 = "xyX0X9mc0kyz9plIyryrRbl7ngsA9jz77mCZJsUkLl+ZKs0KWObgaEBoSgQiYWAsSmjz/yjl0F++Got0Mdp4Rw==";
+      };
+    };
+    "@fortawesome/fontawesome-svg-core-6.6.0" = {
+      name = "_at_fortawesome_slash_fontawesome-svg-core";
+      packageName = "@fortawesome/fontawesome-svg-core";
+      version = "6.6.0";
+      src = fetchurl {
+        url = "https://registry.npmjs.org/@fortawesome/fontawesome-svg-core/-/fontawesome-svg-core-6.6.0.tgz";
+        sha512 = "KHwPkCk6oRT4HADE7smhfsKudt9N/9lm6EJ5BVg0tD1yPA5hht837fB87F8pn15D8JfTqQOjhKTktwmLMiD7Kg==";
+      };
+    };
+    "@fortawesome/free-solid-svg-icons-6.6.0" = {
+      name = "_at_fortawesome_slash_free-solid-svg-icons";
+      packageName = "@fortawesome/free-solid-svg-icons";
+      version = "6.6.0";
+      src = fetchurl {
+        url = "https://registry.npmjs.org/@fortawesome/free-solid-svg-icons/-/free-solid-svg-icons-6.6.0.tgz";
+        sha512 = "IYv/2skhEDFc2WGUcqvFJkeK39Q+HyPf5GHUrT/l2pKbtgEIv1al1TKd6qStR5OIwQdN1GZP54ci3y4mroJWjA==";
+      };
+    };
+    "@fortawesome/react-fontawesome-0.2.2" = {
+      name = "_at_fortawesome_slash_react-fontawesome";
+      packageName = "@fortawesome/react-fontawesome";
+      version = "0.2.2";
+      src = fetchurl {
+        url = "https://registry.npmjs.org/@fortawesome/react-fontawesome/-/react-fontawesome-0.2.2.tgz";
+        sha512 = "EnkrprPNqI6SXJl//m29hpaNzOp1bruISWaOiRtkMi/xSvHJlzc2j2JAYS7egxt/EbjSNV/k6Xy0AQI6vB2+1g==";
+      };
+    };
     "@humanwhocodes/config-array-0.13.0" = {
       name = "_at_humanwhocodes_slash_config-array";
       packageName = "@humanwhocodes/config-array";
@@ -8158,6 +8194,12 @@ let
         sha512 = "7EAHlyLHI56VEIdK57uwHdHKIaAGbnXPiw0yWbarQZOKaKpvUIgW0jWRVLiatnM+XXlSwsanIBH/hzGMJulMow==";
       };
     };
+    "personal-site-result/tarballs/personal-site-0.1.0.tgz" = {
+      name = "personal-site";
+      packageName = "personal-site";
+      version = 1;
+      src = ./result/tarballs/personal-site-0.1.0.tgz;
+    };
     "picocolors-0.2.1" = {
       name = "picocolors";
       packageName = "picocolors";
@@ -10651,13 +10693,13 @@ let
         sha512 = "zdu8XMNEDepKKR+XYOXAVPtWui0ly0NtohUscw+UmaHiAWT8hrV1rr//H6V+0DvJ3OQ19S979M0laLfX8rm82Q==";
       };
     };
-    "typescript-5.6.3" = {
+    "typescript-4.9.5" = {
       name = "typescript";
       packageName = "typescript";
-      version = "5.6.3";
+      version = "4.9.5";
       src = fetchurl {
-        url = "https://registry.npmjs.org/typescript/-/typescript-5.6.3.tgz";
-        sha512 = "hjcS1mhfuyi4WW8IWtjP7brDrG2cuDZukyrYrSauoXGNgx0S7zceP07adYkJycEr56BOUTNPzbInooiN3fn1qw==";
+        url = "https://registry.npmjs.org/typescript/-/typescript-4.9.5.tgz";
+        sha512 = "1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==";
       };
     };
     "unbox-primitive-1.0.2" = {
@@ -11636,6 +11678,10 @@ let
         ];
       })
       sources."@eslint/js-8.57.1"
+      sources."@fortawesome/fontawesome-common-types-6.6.0"
+      sources."@fortawesome/fontawesome-svg-core-6.6.0"
+      sources."@fortawesome/free-solid-svg-icons-6.6.0"
+      sources."@fortawesome/react-fontawesome-0.2.2"
       sources."@humanwhocodes/config-array-0.13.0"
       sources."@humanwhocodes/module-importer-1.0.1"
       sources."@humanwhocodes/object-schema-2.0.3"
@@ -12784,6 +12830,7 @@ let
       sources."path-to-regexp-0.1.10"
       sources."path-type-4.0.0"
       sources."performance-now-2.1.0"
+      sources."personal-site-result/tarballs/personal-site-0.1.0.tgz"
       sources."picocolors-1.1.1"
       sources."picomatch-2.3.1"
       sources."pify-2.3.0"
@@ -13187,7 +13234,7 @@ let
       sources."typed-array-byte-offset-1.0.2"
       sources."typed-array-length-1.0.6"
       sources."typedarray-to-buffer-3.1.5"
-      sources."typescript-5.6.3"
+      sources."typescript-4.9.5"
       sources."unbox-primitive-1.0.2"
       sources."underscore-1.12.1"
       sources."undici-types-6.19.8"
