@@ -4,6 +4,7 @@ on: [push]
 jobs:
   Explore-GitHub-Actions:
     runs-on: christianbingman-com-runners
+    container: nixos/nix:latest
     steps:
-      - run: docker system info
+      - run: echo "Hello world"
 
