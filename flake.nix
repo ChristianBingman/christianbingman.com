@@ -90,6 +90,10 @@
                 location / {
                   try_files $uri $uri/ =404;
                 }
+
+                location /healthz {
+                  return 200;
+                }
               }
           }
         '';
