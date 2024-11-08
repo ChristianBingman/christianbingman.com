@@ -31,7 +31,7 @@
 
           #                          [ debug | info | notice | warn | error | crit ]
 
-          error_log  /dev/stdout  info;
+          error_log  /dev/stderr  info;
 
           events {
               worker_connections   2000;
@@ -48,10 +48,7 @@
                                    '"$http_referer" "$http_user_agent" '
                                    '"$gzip_ratio"';
 
-              log_format download  '$remote_addr - $remote_user [$time_local] '
-                                   '"$request" $status $bytes_sent '
-                                   '"$http_referer" "$http_user_agent" '
-                                   '"$http_range" "$sent_http_content_range"';
+              access_log /dev/stdout main;
 
               client_header_timeout  3m;
               client_body_timeout    3m;
@@ -71,7 +68,6 @@
               sendfile         on;
               tcp_nopush       on;
               tcp_nodelay      on;
-              send_lowat       12000;
 
               keepalive_timeout  75 20;
 
@@ -112,11 +108,28 @@
         docker = pkgs.dockerTools.buildImage {
           name = "personal-site";
           tag = "latest";
-          runAsRoot = ''
-            mkdir -p /var/log/nginx
-            ${pkgs.dockerTools.shadowSetup}
-            useradd --no-create-home --shell ${pkgs.shadow}/bin/nologin --user-group www
-          '';
+          copyToRoot = pkgs.buildEnv {
+            name = "image-root";
+            paths = [
+              (pkgs.buildEnv {
+                name = "image-root";
+                paths = with pkgs; [
+                  bashInteractive
+                  coreutils
+                  curl
+                ];
+                pathsToLink = [ "/bin" ];
+              })
+              (pkgs.runCommand "www" {} ''
+                mkdir -p $out/var/log/nginx
+                mkdir $out/etc
+                mkdir $out/tmp
+                echo "www:x:1000:1000:www:/home/www:/bin/false" > $out/etc/passwd
+                echo "www:x:1000:" > $out/etc/group
+                echo "youruser:!:1::::::" > $out/etc/shadow
+              '')
+            ];
+          };
           config = {
             Cmd = [ "${pkgs.nginx}/bin/nginx" "-c" "${pkgs.nginx-conf}" ];
           };
