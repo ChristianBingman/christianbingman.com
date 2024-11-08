@@ -7,7 +7,7 @@ jobs:
     container: nixos/nix:latest
     steps:
       - name: Set up checkout dependancies
-        run: nix-env -iA nodejs
+        run: nix-env -iA nixpkgs.nodejs
       - name: Checkout
         uses: actions/checkout@v4
       - name: Build container
