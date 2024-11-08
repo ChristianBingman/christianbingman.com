@@ -4,10 +4,11 @@ on: [push]
 jobs:
   container-build:
     runs-on: christianbingman-com-runners
-    container: summerwind/actions-runner:latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Setup Nix Deps
+        run: apk add xz
       - uses: cachix/install-nix-action@v27
         with:
           nix_path: nixpkgs=channel:nixos-unstable
