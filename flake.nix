@@ -106,7 +106,7 @@
       packages = forEachSupportedSystem ({ pkgs }: {
         default = pkgs.site;
         docker = pkgs.dockerTools.buildImage {
-          name = "personal-site";
+          name = "registry.christanbingman.com/personal-site";
           tag = "latest";
           copyToRoot = pkgs.buildEnv {
             name = "image-root";
@@ -126,7 +126,7 @@
                 mkdir $out/tmp
                 echo "www:x:1000:1000:www:/home/www:/bin/false" > $out/etc/passwd
                 echo "www:x:1000:" > $out/etc/group
-                echo "youruser:!:1::::::" > $out/etc/shadow
+                echo "www:!:1::::::" > $out/etc/shadow
               '')
             ];
           };

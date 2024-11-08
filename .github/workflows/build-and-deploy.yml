@@ -19,4 +19,15 @@ jobs:
         with:
           name: container.tar
           path: ./result
-
+  container-push:
+    runs-on: christianbingman-com-runners
+    needs: container-build
+    steps:
+      - name: Download container tar
+        uses: actions/download-artifact@v4
+        with:
+          name: container.tar
+      - name: Load container image
+        run: docker load < result
+      - name: Push image to repo
+        run: "docker push registry.christianbingman.com/personal-site:latest"
