@@ -2,12 +2,15 @@ name: Build and Deploy
 run-name: Build and Upload Image
 on: [push]
 jobs:
+  checkout:
+    runs-on: christianbingman-com-runners
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
   container-build:
     runs-on: christianbingman-com-runners
     container: nixos/nix:latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
       - name: Build container
         run: nix build .#docker --extra-experimental-features nix-command --extra-experimental-features flakes
       - name: Upload container
