@@ -4,7 +4,7 @@ on: [push]
 jobs:
   container-build:
     runs-on: christianbingman-com-runners
-    container: ubuntu:latest
+    container: summerwind/actions-runner:latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
