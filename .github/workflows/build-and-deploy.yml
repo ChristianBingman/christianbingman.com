@@ -1,0 +1,16 @@
+name: Build and Deploy
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: [push]
+jobs:
+  container-build:
+    runs-on: christianbingman-com-runners
+    container: nixos/nix:latest
+    steps:
+      - name: Build container
+        run: nix build .#docker --extra-experimental-feature nix-command --extra-experimental-feature flakes
+      - name: Upload container
+        uses: actions/upload-artifact@v4
+        with:
+          name: container.tar
+          path: ./result
+
