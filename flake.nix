@@ -106,7 +106,7 @@
       packages = forEachSupportedSystem ({ pkgs }: {
         default = pkgs.site;
         docker = pkgs.dockerTools.buildImage {
-          name = "registry.christanbingman.com/personal-site";
+          name = "registry.christianbingman.com/personal-site";
           tag = "latest";
           copyToRoot = pkgs.buildEnv {
             name = "image-root";
