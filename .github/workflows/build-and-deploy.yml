@@ -4,6 +4,7 @@ on: [push]
 jobs:
   container-build:
     runs-on: christianbingman-com-runners
+    container: ubuntu:latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
