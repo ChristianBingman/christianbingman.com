@@ -6,6 +6,8 @@ jobs:
     runs-on: christianbingman-com-runners
     container: nixos/nix:latest
     steps:
+      - name: Show contents
+        run: ls -la
       - name: Build container
         run: nix build .#docker --extra-experimental-features nix-command --extra-experimental-features flakes
       - name: Upload container
