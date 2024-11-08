@@ -6,8 +6,11 @@ jobs:
     runs-on: christianbingman-com-runners
     container: nixos/nix:latest
     steps:
-      - name: Show env
-        run: env
+      - name: Checkout
+        run: |
+          git clone -n --depth 1 $GITHUB_SERVER_URL/$GITHUB_REPOSITORY .
+          git fetch origin $GITHUB_REF
+          git reset --hard $GITHUB_SHA
       - name: Build container
         run: nix build .#docker --extra-experimental-features nix-command --extra-experimental-features flakes
       - name: Upload container
