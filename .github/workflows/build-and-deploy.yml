@@ -23,11 +23,47 @@ jobs:
     runs-on: christianbingman-com-runners
     needs: container-build
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            package.json
       - name: Download container tar
         uses: actions/download-artifact@v4
         with:
           name: container.tar
       - name: Load container image
         run: docker load < result
+      - name: Tag image
+        run: |
+          COMMIT_TAG=$(jq -r .version package.json)-$GIHUB_SHA
+          echo "COMMIT_TAG=$COMMIT_TAG" >> "$GITHUB_ENV"
+          docker tag registry.christianbingman.com/personal-site:latest registry.christianbingman.com/personal-site:$COMMIT_TAG
       - name: Push image to repo
-        run: "docker push registry.christianbingman.com/personal-site:latest"
+        run: "docker push registry.christianbingman.com/personal-site:$COMMIT_TAG"
+  update-chart:
+    runs-on: christianbingman-com-runners
+    needs: container-build
+    steps:
+      - name: Checkout package.json
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            package.json
+      - name: Checkout helm repo
+        uses: actions/checkout@v4
+        with:
+          repository: ChristianBingman/christiannbingman-com-helm
+          token: ${{ secrets.HELM_PAT }}
+          ref: main
+          path: chart
+      - name: Setup env
+        run: echo "COMMIT_TAG=$(jq -r .version package.json)-$GITHUB_SHA" >> "$GITHUB_ENV"
+      - name: Update int environment
+        run: |
+          echo "image.tag: $COMMIT_TAG" > int.yaml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add int.yaml
+          git commit -m "Deploy bot [int]"
+          git push
