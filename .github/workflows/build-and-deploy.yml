@@ -61,6 +61,7 @@ jobs:
         run: echo "COMMIT_TAG=$(jq -r .version package.json)-$GITHUB_SHA" >> "$GITHUB_ENV"
       - name: Update int environment
         run: |
+          cd chart
           echo "image.tag: $COMMIT_TAG" > int.yaml
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR_ID+$GITHUB_ACTOR@users.noreply.github.com"
