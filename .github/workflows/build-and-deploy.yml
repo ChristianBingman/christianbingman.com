@@ -40,7 +40,7 @@ jobs:
           echo "COMMIT_TAG=$COMMIT_TAG" >> "$GITHUB_ENV"
           docker tag registry.christianbingman.com/personal-site:latest registry.christianbingman.com/personal-site:$COMMIT_TAG
           if [[ "$GITHUB_REF_TYPE" == "tag" ]]; then
-            docker tag registry.christianbingman.com/personal-site:latest registry.christianbingman.com/personal-site:$COMMIT_TAG
+            docker tag registry.christianbingman.com/personal-site:latest registry.christianbingman.com/personal-site:$(jq -r .version package.json)
           fi
       - name: Push image to repo
         run: "docker push registry.christianbingman.com/personal-site:$COMMIT_TAG"
