@@ -1,0 +1,11 @@
+name: Tag and Build
+on:
+  push:
+    tags:
+      - '*'
+jobs:
+  check-tag:
+    runs-on: christianbingman-com-runners
+    steps:
+      - run: env
+
