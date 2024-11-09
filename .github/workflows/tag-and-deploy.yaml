@@ -7,5 +7,28 @@ jobs:
   check-tag:
     runs-on: christianbingman-com-runners
     steps:
-      - run: env
-
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            package.json
+      - name: Check version matches tag
+        run: |
+          [[ "$GITHUB_REF_NAME" == "$(jq -r .version package.json)" ]]
+      - name: Checkout helm repo
+        uses: actions/checkout@v4
+        with:
+          repository: ChristianBingman/christianbingman-com-helm
+          token: ${{ secrets.HELM_PAT }}
+          ref: main
+          path: chart
+      - name: Update app version
+        run: |
+          RELEASE_VERSION=$(jq -r .version package.json)
+          cd chart
+          sed -i -e "s/appVersion: \".\"*$/appVersion: \"$RELEASE_VERSION\"/g" Chart.yaml
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR_ID+$GITHUB_ACTOR@users.noreply.github.com"
+          git add Chart.yaml
+          git commit -m "Deploy [prod]"
+          git push

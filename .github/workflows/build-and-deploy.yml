@@ -39,8 +39,14 @@ jobs:
           COMMIT_TAG=$(jq -r .version package.json)-$GITHUB_SHA
           echo "COMMIT_TAG=$COMMIT_TAG" >> "$GITHUB_ENV"
           docker tag registry.christianbingman.com/personal-site:latest registry.christianbingman.com/personal-site:$COMMIT_TAG
+          if [[ "$GITHUB_REF_TYPE" == "tag" ]]; then
+            docker tag registry.christianbingman.com/personal-site:latest registry.christianbingman.com/personal-site:$COMMIT_TAG
+          fi
       - name: Push image to repo
         run: "docker push registry.christianbingman.com/personal-site:$COMMIT_TAG"
+      - name: Push production image
+        if: github.ref_type == 'tag'
+        run: "docker push registry.christianbingman.com/personal-site:$(jq -r .version package.json)"
   update-chart:
     runs-on: christianbingman-com-runners
     needs: container-build
