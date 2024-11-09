@@ -53,7 +53,7 @@ jobs:
       - name: Checkout helm repo
         uses: actions/checkout@v4
         with:
-          repository: ChristianBingman/christiannbingman-com-helm
+          repository: ChristianBingman/christianbingman-com-helm
           token: ${{ secrets.HELM_PAT }}
           ref: main
           path: chart
