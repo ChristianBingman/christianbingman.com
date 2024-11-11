@@ -9,9 +9,9 @@ function App() {
   return (
     <div className="bg-home-gradient min-h-screen font-sans">
       <Navbar />
-      <div className="flex min-h-[90vh]">
+      <div className="flex flex-wrap-reverse items-center justify-center min-h-[90vh]">
         {/* Left Section with Text */}
-        <div className="flex-1 flex items-center justify-center ">
+        <div className="flex mx-4 my-8">
           <div className="max-w-lg">
             <h1 className="text-3xl font-bold mb-4">Hello 👋🏼! I’m Christian.</h1>
             <p className="text-lg text-gray-700 my-4">
@@ -23,7 +23,7 @@ function App() {
         </div>
 
         {/* Right Section with Image */}
-        <div className="flex-1 flex items-center justify-center">
+        <div className="flex mx-4 my-4">
           <div>
             <RoundedImage src="https://avatars.githubusercontent.com/u/42191425?v=4" alt="GitHub Avatar" />
           </div>

@@ -6,7 +6,7 @@ const ImageComponent = ({ src, alt }) => {
     <img 
       src={src} 
       alt={alt} 
-      className="rounded-[100px] w-full h-auto object-contain" 
+      className="rounded-full md:rounded-[100px] w-full h-auto object-contain" 
     />
   );
 };
