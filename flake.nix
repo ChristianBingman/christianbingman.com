@@ -18,7 +18,7 @@
           pname = "personal-site";
           version = "1.0.0";
           src = ./.;
-          npmDepsHash = "sha256-++OEQYqq5UTtkOdhfM+FJ9nIqIM7mxPLqx/r4iXhQ40=";
+          npmDepsHash = "sha256-kq9NV+yisz4mRp/kRGm0mMqeyoVKdRaHBZoyFsa+6cc=";
         }).overrideAttrs (prev: { installPhase = ''
           mv build $out
         '';});
