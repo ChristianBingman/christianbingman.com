@@ -16,9 +16,9 @@
         yarn = (prev.yarn.override { inherit nodejs; });
         site = (prev.buildNpmPackage rec {
           pname = "personal-site";
-          version = "1.0.0";
+          version = "0.1.3";
           src = ./.;
-          npmDepsHash = "sha256-kq9NV+yisz4mRp/kRGm0mMqeyoVKdRaHBZoyFsa+6cc=";
+          npmDepsHash = "sha256-1WZpF4ompRN+kTSWqpgMbs1FLkOgBU9tsIBLIBvJyNU=";
         }).overrideAttrs (prev: { installPhase = ''
           mv build $out
         '';});
